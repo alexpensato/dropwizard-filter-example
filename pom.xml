@@ -17,11 +17,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <dropwizard.version>2.1.6</dropwizard.version>
-        <mainClass>com.pensatocode.example.ExampleApplication</mainClass>
+        <mainClass>com.pensatocode.example.MyExampleApplication</mainClass>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!--dependency>
+                <groupId>ru.vyarus.guicey</groupId>
+                <artifactId>guicey-bom</artifactId>
+                <version>5.9.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency-->
             <dependency>
                 <groupId>io.dropwizard</groupId>
                 <artifactId>dropwizard-dependencies</artifactId>
@@ -49,6 +56,10 @@
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
         </dependency>
+        <!--dependency>
+            <groupId>ru.vyarus</groupId>
+            <artifactId>dropwizard-guicey</artifactId>
+        </dependency-->
     </dependencies>
 
     <build>
@@ -145,8 +156,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>11</source>
+                    <target>11</target>
                 </configuration>
             </plugin>
             <plugin>

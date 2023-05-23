@@ -1,3 +1,5 @@
+server:
+  rootPath: '/rest/*'
 logging:
   level: INFO
   loggers:
