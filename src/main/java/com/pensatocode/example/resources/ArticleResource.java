@@ -2,6 +2,7 @@ package com.pensatocode.example.resources;
 
 import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
+import com.pensatocode.example.api.Scope;
 import com.pensatocode.example.core.Article;
 import com.pensatocode.example.db.ArticleRepository;
 import com.pensatocode.example.filters.ScopeAllowed;
@@ -33,7 +34,7 @@ public class ArticleResource {
 
     @GET
     @Timed
-    @ScopeAllowed
+    @ScopeAllowed()
     public List<Article> getArticles(@QueryParam("size") Optional<Integer> size) {
         return articleRepository.findAll(size.orElse(defaultSize));
     }
@@ -41,7 +42,7 @@ public class ArticleResource {
     @GET
     @Path("/{id}")
     @Metered
-    @ScopeAllowed
+    @ScopeAllowed(values = {Scope.IN, Scope.OUT})
     public Article getById(@PathParam("id") Long id) {
         return articleRepository
                 .findById(id)
