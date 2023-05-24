@@ -1,5 +1,7 @@
 package com.pensatocode.example.resources;
 
+import com.pensatocode.example.filters.DateRequired;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -14,6 +16,7 @@ public class LoopbackResource {
 
     @GET
     @Path("/")
+    @DateRequired
     public Response ask(@Context HttpServletRequest request) {
         final String ip = request.getRemoteAddr();
         return Response.ok(ip).build();

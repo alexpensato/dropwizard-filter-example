@@ -1,6 +1,7 @@
 package com.pensatocode.example;
 
 import com.pensatocode.example.db.ArticleRepository;
+import com.pensatocode.example.filters.DateRequiredFeature;
 import com.pensatocode.example.health.ApplicationHealthCheck;
 import com.pensatocode.example.resources.ArticleResource;
 import com.pensatocode.example.resources.LoopbackResource;
@@ -47,6 +48,8 @@ public class MyExampleApplication extends io.dropwizard.Application<BasicConfigu
     public void run(final BasicConfiguration configuration, final Environment environment) {
         // health checks
         environment.healthChecks().register("application", new ApplicationHealthCheck());
+        // features
+        environment.jersey().register(DateRequiredFeature.class);
         // register resources
         environment.jersey().register(new ArticleResource(configuration.getDefaultSize(), new ArticleRepository()));
         environment.jersey().register(new LoopbackResource());

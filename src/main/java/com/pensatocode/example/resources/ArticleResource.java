@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
 import com.pensatocode.example.core.Article;
 import com.pensatocode.example.db.ArticleRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,6 +15,9 @@ import java.util.Optional;
 @Path("/articles")
 @Produces(MediaType.APPLICATION_JSON)
 public class ArticleResource {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ArticleResource.class);
+
     private final int defaultSize;
 
     private final ArticleRepository articleRepository;
@@ -20,7 +25,7 @@ public class ArticleResource {
     public ArticleResource(int defaultSize, ArticleRepository articleRepository) {
         this.defaultSize = defaultSize;
         this.articleRepository = articleRepository;
-        System.out.println("############## ArticleResource Constructor ##############");
+        LOGGER.info("############## ArticleResource Constructor ##############");
     }
 
     @GET
