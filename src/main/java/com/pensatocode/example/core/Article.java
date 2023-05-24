@@ -1,6 +1,7 @@
 package com.pensatocode.example.core;
 
 public class Article {
+    public static final Article EMPTY = new Article(0L, "");
     private final Long id;
     private final String title;
 
