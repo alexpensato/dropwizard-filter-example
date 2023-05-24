@@ -10,6 +10,7 @@ import javax.ws.rs.core.FeatureContext;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.lang.reflect.Modifier;
+import java.util.Arrays;
 
 @Provider
 public class ScopeRequiredFeature implements DynamicFeature {
@@ -32,7 +33,12 @@ public class ScopeRequiredFeature implements DynamicFeature {
         if (resourceInfo.getResourceMethod().getReturnType().equals(Void.TYPE)) {
             return;
         }
-        if (resourceInfo.getResourceMethod().getAnnotation(ScopeAllowed.class) != null) {
+        ScopeAllowed annotation = resourceInfo.getResourceMethod().getAnnotation(ScopeAllowed.class);
+        if (annotation != null) {
+            LOGGER.info(String.format("=====> Class: %s, Method: %s, ScopeAllowed Annotation Values: %s",
+                            resourceInfo.getResourceClass().getName(),
+                            resourceInfo.getResourceMethod().getName(),
+                            Arrays.toString(annotation.values())));
             context.register(ScopeAllowedFilter.class);
         } else {
             LOGGER.warn("############## ScopeAllowed annotation was not specified!");
