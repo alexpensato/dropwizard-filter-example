@@ -19,6 +19,7 @@ public class ScopeAllowedFilter implements ContainerRequestFilter {
      */
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        LOGGER.info("############## Path: " + requestContext.getUriInfo().getPath());
         String id = null;
         MultivaluedMap<String, String> queryParams = requestContext.getUriInfo().getQueryParameters();
         for (String key : queryParams.keySet()) {
