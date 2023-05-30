@@ -30,9 +30,11 @@ public class UserResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @CountryAllowed(values = {Country.USA})
     public Response combineUserData(User user) {
+        LOGGER.info("############## User: " + user.toString());
         // Combine user object data
         String result = String.format("User name is %s and address is %s.",
-                user.getPersonalData().getName(), user.getAddress().getStreet());
+                user.getPersonalData().getName(),
+                user.getAddress().getStreet());
         return Response.status(200).entity(result).build();
     }
 }

@@ -2,7 +2,8 @@ package com.pensatocode.example.api;
 
 public enum Country {
     USA("USA"),
-    CANADA("CAN");
+    CANADA("CAN"),
+    UNKNOWN("UNKNOWN");
 
     private final String value;
 
