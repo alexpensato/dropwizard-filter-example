@@ -1,7 +1,7 @@
 package com.pensatocode.example.db;
 
 import com.pensatocode.example.client.ArticleBootstrap;
-import com.pensatocode.example.core.Article;
+import com.pensatocode.example.model.Article;
 
 import java.util.List;
 import java.util.Optional;

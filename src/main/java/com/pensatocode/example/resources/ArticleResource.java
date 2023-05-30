@@ -3,7 +3,7 @@ package com.pensatocode.example.resources;
 import com.codahale.metrics.annotation.Metered;
 import com.codahale.metrics.annotation.Timed;
 import com.pensatocode.example.api.Scope;
-import com.pensatocode.example.core.Article;
+import com.pensatocode.example.model.Article;
 import com.pensatocode.example.db.ArticleRepository;
 import com.pensatocode.example.filters.ScopeAllowed;
 import com.pensatocode.example.filters.ScopeRequired;

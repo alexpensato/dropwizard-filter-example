@@ -1,4 +1,4 @@
-package com.pensatocode.example.core;
+package com.pensatocode.example.model;
 
 public class Article {
     public static final Article EMPTY = new Article(0L, "");
