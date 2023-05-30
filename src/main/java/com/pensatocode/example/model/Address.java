@@ -8,7 +8,6 @@ public class Address {
     private String zipCode;
 
     // getters and setters
-
     public String getStreet() {
         return street;
     }

@@ -1,11 +1,13 @@
 package com.pensatocode.example;
 
 import com.pensatocode.example.db.ArticleRepository;
+import com.pensatocode.example.filters.CountryRequiredFeature;
 import com.pensatocode.example.filters.DateRequiredFeature;
 import com.pensatocode.example.filters.ScopeRequiredFeature;
 import com.pensatocode.example.health.ApplicationHealthCheck;
 import com.pensatocode.example.resources.ArticleResource;
 import com.pensatocode.example.resources.LoopbackResource;
+import com.pensatocode.example.resources.UserResource;
 import io.dropwizard.configuration.ResourceConfigurationSourceProvider;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -50,11 +52,13 @@ public class MyExampleApplication extends io.dropwizard.Application<BasicConfigu
         // health checks
         environment.healthChecks().register("application", new ApplicationHealthCheck());
         // features
+        environment.jersey().register(CountryRequiredFeature.class);
         environment.jersey().register(DateRequiredFeature.class);
         environment.jersey().register(ScopeRequiredFeature.class);
         // register resources
         environment.jersey().register(new ArticleResource(configuration.getDefaultSize(), new ArticleRepository()));
         environment.jersey().register(new LoopbackResource());
+        environment.jersey().register(new UserResource(configuration.getDefaultSize()));
     }
 
 }
