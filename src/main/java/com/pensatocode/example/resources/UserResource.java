@@ -37,4 +37,18 @@ public class UserResource {
                 user.getAddress().getStreet());
         return Response.status(200).entity(result).build();
     }
+
+    @POST
+    @Path("/foreign")
+    @Produces(MediaType.TEXT_HTML)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @CountryAllowed(values = {Country.CANADA})
+    public Response foreignUserData(User user) {
+        LOGGER.info("############## Foreign User: " + user.toString());
+        // Combine user object data
+        String result = String.format("[Foreign] User name is %s and address is %s.",
+                user.getPersonalData().getName(),
+                user.getAddress().getStreet());
+        return Response.status(200).entity(result).build();
+    }
 }

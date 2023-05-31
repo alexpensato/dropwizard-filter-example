@@ -39,7 +39,7 @@ public class CountryRequiredFeature implements DynamicFeature {
                             resourceInfo.getResourceClass().getName(),
                             resourceInfo.getResourceMethod().getName(),
                             Arrays.toString(annotation.values())));
-            context.register(CountryAllowedFilter.class);
+            context.register(new CountryAllowedFilter(annotation.values()));
         } else {
             LOGGER.warn("############## CountryAllowed annotation was not specified!");
             throw new WebApplicationException(

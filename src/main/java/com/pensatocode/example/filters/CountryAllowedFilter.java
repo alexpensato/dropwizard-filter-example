@@ -12,6 +12,8 @@ import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.ext.Provider;
 import java.io.*;
+import java.util.Arrays;
+import java.util.List;
 
 @Provider
 public class CountryAllowedFilter implements ContainerRequestFilter {
@@ -19,6 +21,12 @@ public class CountryAllowedFilter implements ContainerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(CountryAllowedFilter.class);
 
     private final ObjectMapper objectMapper = new ObjectMapper();
+
+    private final List<Country> allowedCountries;
+
+    public CountryAllowedFilter(Country[] allowedCountries) {
+        this.allowedCountries = Arrays.asList(allowedCountries);
+    }
 
     /**
      * This filter will be executed only if the method is annotated with @CountryAllowed.
@@ -77,7 +85,7 @@ public class CountryAllowedFilter implements ContainerRequestFilter {
         } catch (IllegalArgumentException e) {
             requestCountry = Country.UNKNOWN;
         }
-        if (requestCountry == Country.USA) {
+        if (allowedCountries.contains(requestCountry)) {
             LOGGER.info("############## Country is allowed: " + address.getCountry());
         } else {
             LOGGER.warn("############## Country is not allowed: " + address.getCountry());
